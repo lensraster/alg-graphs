@@ -3,6 +3,7 @@
 #include <jansson.h>
 #include "shortest_path.c"
 #include "dfs.c"
+#include "closest_node.c"
 
 #define INFINITY 9999
 #define MAX 9
@@ -10,9 +11,9 @@
 void findShortestPath(int Graph[MAX][MAX]) {
     int city1;
     int city2;
-    printf("Shoose the first city: ");
+    printf("Choose the first city: ");
     scanf("%d", &city1);
-    printf("Shoose the second city: ");
+    printf("Choose the second city: ");
     scanf("%d", &city2);
 
     printf("You have chosen city1: %d and city2 %d\n", city1, city2);
@@ -22,9 +23,9 @@ void findShortestPath(int Graph[MAX][MAX]) {
 void findAllPaths(int Graph[MAX][MAX]) {
     int city1;
     int city2;
-    printf("Shoose the first city: ");
+    printf("Choose the first city: ");
     scanf("%d", &city1);
-    printf("Shoose the second city: ");
+    printf("Choose the second city: ");
     scanf("%d", &city2);
 
     printf("You have chosen city1: %d and city2 %d\n", city1, city2);
@@ -44,10 +45,12 @@ void findAllPaths(int Graph[MAX][MAX]) {
     printAllPaths(city1, city2, Graph);
 }
 
-void findMinimalDistance() {
+void findMinimalDistance(int Graph[MAX][MAX]) {
     int city1;
-    printf("Shoose the first city");
+    printf("Choose the starting city: ");
     scanf("%d", &city1);
+
+    shortest_path(Graph, city1);
 }
 
 // void readJsonFile(const char *filename) {
@@ -83,15 +86,15 @@ int main() {
     //readJsonFile("cities.json");
 
     int Graph[V][V] = {
-      {0, 4, 0, 0, 0, 0, 0, 8, 0},
-      {4, 0, 8, 0, 0, 0, 0, 11, 0},
-      {0, 8, 0, 7, 0, 4, 0, 0, 2},
-      {0, 0, 7, 0, 9, 14, 0, 0, 0},
-      {0, 0, 0, 9, 0, 10, 0, 0, 0},
-      {0, 0, 4, 14, 10, 0, 2, 0, 0},
-      {0, 0, 0, 0, 0, 2, 0, 1, 6},
-      {8, 11, 0, 0, 0, 0, 1, 0, 7},
-      {0, 0, 2, 0, 0, 0, 6, 7, 0}
+      {0, 10, 0, 0, 7, 0, 0, 0, 0},
+      {0, 0, 5, 0, 0, 0, 8, 0, 0},
+      {0, 0, 0, 2, 0, 0, 0, 6, 0},
+      {0, 3, 0, 0, 0, 9, 0, 0, 1},
+      {0, 0, 0, 4, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 5, 0},
+      {11, 0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 12, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0}
     };
 
     printf("Choose an option:\n");
@@ -108,7 +111,7 @@ int main() {
             findAllPaths(Graph);
             break;
         case 3:
-            findMinimalDistance();
+            findMinimalDistance(Graph);
             break;
         default:
             printf("Invalid choice.\n");
