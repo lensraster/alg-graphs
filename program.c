@@ -4,6 +4,7 @@
 #include "shortest_path.c"
 #include "dfs.c"
 #include "closest_node.c"
+#include "disconnected.c"
 
 #define INFINITY 9999
 #define MAX 9
@@ -53,6 +54,23 @@ void findMinimalDistance(int Graph[MAX][MAX]) {
     shortest_path(Graph, city1);
 }
 
+void findDisconnected(int Graph[MAX][MAX]) {
+    // Set missing edges to INF
+    for(int i = 0; i < MAX; i++) {
+      for(int j = 0; j < MAX; j++) {
+          if(i != j) {
+              if (Graph[i][j] == 0) {
+                Graph[i][j] = INF;
+              }
+          } else {
+              Graph[i][j] = 0;
+          }
+      }
+    }
+
+    floydWarshall(Graph);
+}
+
 // void readJsonFile(const char *filename) {
 //     json_t *root;
 //     json_error_t error;
@@ -85,22 +103,23 @@ int main() {
 
     //readJsonFile("cities.json");
 
-    int Graph[V][V] = {
+    int Graph[N][N] = {
       {0, 10, 0, 0, 7, 0, 0, 0, 0},
       {0, 0, 5, 0, 0, 0, 8, 0, 0},
-      {0, 0, 0, 2, 0, 0, 0, 6, 0},
-      {0, 3, 0, 0, 0, 9, 0, 0, 1},
+      {0, 0, 0, 2, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 9, 0, 0, 0},
       {0, 0, 0, 4, 0, 0, 0, 0, 0},
-      {0, 0, 0, 0, 0, 0, 0, 5, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0, 0},
       {11, 0, 0, 0, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0, 12, 0, 0},
-      {0, 0, 0, 0, 0, 0, 0, 0, 0}
+      {0, 0, 0, 3, 0, 0, 0, 0, 0}
     };
 
     printf("Choose an option:\n");
     printf("1. Find shortest path 1\n");
     printf("2. Find all paths 2\n");
     printf("3. Find minimal distance 3\n");
+    printf("4. Find all disconnected nodes\n");
     scanf("%d", &choice);
 
     switch (choice) {
@@ -112,6 +131,9 @@ int main() {
             break;
         case 3:
             findMinimalDistance(Graph);
+            break;
+        case 4:
+            findDisconnected(Graph);
             break;
         default:
             printf("Invalid choice.\n");
