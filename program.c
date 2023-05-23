@@ -17,7 +17,7 @@ void findShortestPath(int Graph[MAX][MAX]) {
     printf("Choose the second city: ");
     scanf("%d", &city2);
 
-    printf("You have chosen city1: %d and city2 %d\n", city1, city2);
+    printf("You have chosen city1: %d and city2: %d\n", city1, city2);
     dijkstra(Graph, city1, city2);
 }
 
@@ -29,7 +29,7 @@ void findAllPaths(int Graph[MAX][MAX]) {
     printf("Choose the second city: ");
     scanf("%d", &city2);
 
-    printf("You have chosen city1: %d and city2 %d\n", city1, city2);
+    printf("You have chosen city1: %d and city2: %d\n", city1, city2);
 
     // Set missing edges to INF
     for(int i = 0; i < MAX; i++) {
@@ -51,7 +51,7 @@ void findMinimalDistance(int Graph[MAX][MAX]) {
     printf("Choose the starting city: ");
     scanf("%d", &city1);
 
-    shortest_path(Graph, city1);
+    closestAdjacentNode(Graph, city1);
 }
 
 void findDisconnected(int Graph[MAX][MAX]) {
@@ -71,41 +71,12 @@ void findDisconnected(int Graph[MAX][MAX]) {
     floydWarshall(Graph);
 }
 
-// void readJsonFile(const char *filename) {
-//     json_t *root;
-//     json_error_t error;
-
-//     root = json_load_file(filename, 0, &error);
-
-//     if (!root) {
-//         fprintf(stderr, "error: on line %d: %s\n", error.line, error.text);
-//         return;
-//     }
-
-//     if (!json_is_object(root)) {
-//         fprintf(stderr, "error: root is not an object\n");
-//         json_decref(root);
-//         return;
-//     }
-
-//     json_t *data;
-//     const char *key;
-
-//     json_object_foreach(root, key, data) {
-//         printf("%s: %s\n", key, json_string_value(data));
-//     }
-
-//     json_decref(root);
-// }
-
 int main() {
     int choice;
 
-    //readJsonFile("cities.json");
-
     int Graph[N][N] = {
       {0, 10, 0, 0, 7, 0, 0, 0, 0},
-      {0, 0, 5, 0, 0, 0, 8, 0, 0},
+      {0, 0, 5, 0, 40, 0, 8, 0, 0},
       {0, 0, 0, 2, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 9, 0, 0, 0},
       {0, 0, 0, 4, 0, 0, 0, 0, 0},
@@ -116,9 +87,9 @@ int main() {
     };
 
     printf("Choose an option:\n");
-    printf("1. Find shortest path 1\n");
-    printf("2. Find all paths 2\n");
-    printf("3. Find minimal distance 3\n");
+    printf("1. Find shortest path\n");
+    printf("2. Find all paths\n");
+    printf("3. Find minimal distance\n");
     printf("4. Find all disconnected nodes\n");
     scanf("%d", &choice);
 

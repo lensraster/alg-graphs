@@ -64,27 +64,3 @@ void printAllPaths(int start, int end, int graph[MAX_NODES][MAX_NODES]) {
         printf("\n");
     }
 }
-
-// int main() {
-//     int graph[MAX_NODES][MAX_NODES];
-//     for(int i = 0; i < MAX_NODES; i++) {
-//         for(int j = 0; j < MAX_NODES; j++) {
-//             if(i != j) {
-//                 graph[i][j] = INF;
-//             } else {
-//                 graph[i][j] = 0;
-//             }
-//         }
-//     }
-
-//     // Add edges to the graph here...
-//     graph[0][1] = 2;
-//     graph[1][2] = 3;
-//     graph[2][3] = 4;
-//     graph[3][4] = 5;
-
-//     int start = 0, end = 4;
-//     printAllPaths(start, end, graph);
-
-//     return 0;
-// }

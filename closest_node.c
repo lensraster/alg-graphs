@@ -2,7 +2,7 @@
 #define INFINITY 9999
 #define MAX 9
 
-void shortest_path(int Graph[MAX][MAX], int startnode) {
+void closestAdjacentNode(int Graph[MAX][MAX], int startnode) {
     int cost[MAX], visited[MAX], min, next_vertex, i, j, closest_vertex;
 
     min = INFINITY;
@@ -13,5 +13,5 @@ void shortest_path(int Graph[MAX][MAX], int startnode) {
       }
     }
 
-    printf("Closest node is %d with distance %d", closest_vertex, min);
+    printf("Closest node is %d with distance %d\n", closest_vertex, min);
 }
