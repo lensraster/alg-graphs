@@ -53,15 +53,7 @@ int** dijkstra(int graph[V][V], int src) {
                    // We need it to avoid processing already processed vertices
 
     int dist[V];  // dist[i] will hold the shortest distance from src to every vertex i
-    int sPathTree[V]; // This array stores the shortest path tree
-
-    // This array will hold the shortest path and the distance
-    // together so that we can return them both
-    int **return_array = (int **)malloc(2 * sizeof(int *));
-    for(int i = 0; i < 2; i++) {
-        return_array[i] = (int *)malloc(V * sizeof(int));
-    }
-                            
+    int sPathTree[V]; // This array stores the shortest path tree            
  
     // Initialize all distances as INFINITE and inPath[] as 0
     for (int i = 0; i < V; i++) {
@@ -75,7 +67,7 @@ int** dijkstra(int graph[V][V], int src) {
     
     // Find shortest paths from src to all the other vertices
     for (int count = 0; count < V-1; count++) {
-        // Pick the minimum distance vertex from the set of vertices not
+        // Pick the next minimum distance vertex from the set of vertices not
         // yet processed. u is always equal to src in first iteration.
         int u = minDistance(dist, inPath);
 
@@ -86,11 +78,18 @@ int** dijkstra(int graph[V][V], int src) {
         // Update dist value of the adjacent vertices of the picked vertex.
         for (int v = 0; v < V; v++)
             if (!inPath[v] && graph[u][v] && (dist[u] + graph[u][v] < dist[v])) {
+                // Update dist[v] to the distance of a shorter path from src to v through u
                 sPathTree[v] = u;
                 dist[v] = dist[u] + graph[u][v];
             }
     }
 
+    // This array will hold the shortest path and the distance
+    // together so that we can return them both
+    int **return_array = (int **)malloc(2 * sizeof(int *));
+    for(int i = 0; i < 2; i++) {
+        return_array[i] = (int *)malloc(V * sizeof(int));
+    }
     // Copy the distance and the shortest path tree to the return array
     for (int i = 0; i < V; i++) {
         return_array[0][i] = dist[i];
