@@ -2,6 +2,12 @@
 #define INFINITY 9999
 #define MAX 9
 
+/**
+ * Finds and prints the closest node to the start node
+ * @param Graph the graph to search
+ * @param startnode the node to start from
+ * @return void
+ */
 void closestAdjacentNode(int Graph[MAX][MAX], int startnode) {
     int cost[MAX], visited[MAX], min, next_vertex, i, j, closest_vertex;
 

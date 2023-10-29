@@ -9,16 +9,29 @@
 #define INFINITY 9999
 #define MAX 9
 
+/**
+ * Finds and prints the shortest path between two cities
+ * @param Graph the graph to search
+ * @param startnode the node to start from
+ * @return void
+ */
 void findShortestPath(int Graph[MAX][MAX]) {
     int city1;
     int city2;
+
+    // This array will hold the distance and the shortest path map
+    int ** result;
     printf("Choose the first city: ");
     scanf("%d", &city1);
     printf("Choose the second city: ");
     scanf("%d", &city2);
 
     printf("You have chosen city1: %d and city2: %d\n", city1, city2);
-    dijkstra(Graph, city1, city2);
+    result = dijkstra(Graph, city1);
+
+    // print the constructed distance array and shortest path
+    printf("Shortest distance from %d to %d is %d\n", city1, city2, result[0][city2]);
+    printSolution(result[1], city2);
 }
 
 void findAllPaths(int Graph[MAX][MAX]) {
