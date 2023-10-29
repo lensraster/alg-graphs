@@ -1,6 +1,10 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
+#######################################################
+# This module is used to draw a directed weighted graph
+#######################################################
+
 # Define your adjacency matrix
 matrix = [
  [0, 10, 0, 0, 7, 0, 0, 0, 0],
